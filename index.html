@@ -3,91 +3,119 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ČOSKORO — Coming Soon</title>
+  <title>Již brzy — Coming Soon</title>
   <style>
     :root{
-      --bg-deep:#071428; /* tmavomodré pozadie */
+      --bg-deep:#071428;
       --bg-accent:#051827;
       --gold-light:#f9e6b8;
       --gold-dark:#c69d40;
-      --glass: rgba(255,255,255,0.04);
+      --clean-light:#0e4d8a;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
     body{
-      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent),
-                  linear-gradient(180deg,var(--bg-deep),var(--bg-accent));
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(180deg,var(--bg-deep),var(--bg-accent));
       display:flex;align-items:center;justify-content:center;color:var(--gold-light);
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-      padding:3rem;
+      overflow:hidden;cursor:none;
+      position:relative;
+    }
+
+    .clean-layer{
+      position:fixed;
+      inset:0;
+      background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(50,120,200,0.2), transparent 120px);
+      pointer-events:none;
+      z-index:0;
     }
 
     .wrap{
-      position:relative; width:min(1100px,92vw); height:min(560px,64vh);
-      display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:20px;
+      position:relative; width:min(1100px,92vw); height:min(640px,70vh);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border-radius:20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
       box-shadow: 0 10px 40px rgba(2,8,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      text-align:center;
+      z-index:1;
     }
 
-    /* Placeholder for user's logo placed behind text */
-    .logo-backdrop{
-      position:absolute; inset:0; display:flex;align-items:center;justify-content:center;pointer-events:none;
-      z-index:0; opacity:0.10; filter: blur(1.5px) saturate(1.1) contrast(1.02);
-      transform:scale(1.05);
+    .logo-top{
+      position:relative;
+      z-index:1;
+      margin-bottom:2rem;
     }
 
-    .logo-backdrop img{
-      max-width:70%; max-height:70%; object-fit:contain; opacity:1; display:block;
-      /* Poznámka: zaměňte src img na vaší soubor loga (png/svg/jpg) */
-    }
-
-    .content{
-      position:relative; z-index:2; text-align:center; padding:2rem;
+    .logo-top img{
+      width:240px;
     }
 
     h1{
-      margin:0; font-size:clamp(48px, 8vw, 120px); line-height:0.9;
-      letter-spacing:0.06em; font-weight:800; color:var(--gold-light);
+      font-size:clamp(48px, 8vw, 120px);
+      letter-spacing:0.08em;
+      font-weight:900;
       background: linear-gradient(90deg, var(--gold-light), var(--gold-dark));
-      -webkit-background-clip: text; background-clip: text; color:transparent;
-      text-shadow: 0 6px 30px rgba(6,12,30,0.6), 0 2px 6px rgba(0,0,0,0.5);
-      transform: translateZ(0);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 6px 30px rgba(6,12,30,0.6),0 2px 6px rgba(0,0,0,0.5);
+      margin-bottom:1rem;
     }
 
     p.sub{
-      margin:1rem 0 0 0; font-size:clamp(14px,2.6vw,20px); opacity:0.9; color:rgba(245,230,180,0.9);
+      font-size:clamp(14px,2.6vw,20px);
+      opacity:0.9;
+      color:rgba(245,230,180,0.9);
     }
 
-    /* elegantní zlaté kontury (subtilní animation) */
-    .shine{position:relative;display:inline-block}
-    .shine:before{
-      content:""; position:absolute; left:-40%; top:0; bottom:0; width:40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-      transform:skewX(-20deg); filter:blur(10px); opacity:0.0; transition:opacity .9s ease-in-out;
+    #drone {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      background-image: url('drone.png'); /* vlož svoj obrázok drona */
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 10;
+      transition: transform 0.1s ease-out;
     }
-    .wrap:hover .shine:before{opacity:1; transition:opacity .6s ease-in-out}
-
-    /* responsivita */
-    @media (max-width:640px){
-      .wrap{border-radius:12px;padding:16px}
-      .logo-backdrop{opacity:0.08}
-      h1{font-size:clamp(36px,10vw,64px)}
-    }
-
   </style>
 </head>
 <body>
+  <div class="clean-layer"></div>
   <div class="wrap">
-    <!-- TU VLOŽTE SVOJE LOGO: zmeňte "your-logo.png" na názov súboru vášho loga alebo SVG inline -->
-    <div class="logo-backdrop" aria-hidden="true">
-      <img src="your-logo.png" alt="Vaše logo - vložte sem svoj súbor" />
+    <div class="logo-top">
+      <img src="MYCKAZOBLAKU bezpozadi.png" alt="Logo Myčka z Oblaků" />
     </div>
-
     <div class="content">
-      <h1 class="shine">ČOSKORO</h1>
+      <h1>JIŽ BRZY</h1>
       <p class="sub">COMING SOON</p>
     </div>
   </div>
+  <div id="drone"></div>
+
+  <script>
+    const drone = document.getElementById('drone');
+    const layer = document.querySelector('.clean-layer');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let droneX = mouseX;
+    let droneY = mouseY;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      layer.style.setProperty('--x', `${mouseX}px`);
+      layer.style.setProperty('--y', `${mouseY}px`);
+    });
+
+    function animate(){
+      droneX += (mouseX - droneX) * 0.1;
+      droneY += (mouseY - droneY) * 0.1;
+      drone.style.transform = `translate(${droneX - 30}px, ${droneY - 30}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 </body>
 </html>
